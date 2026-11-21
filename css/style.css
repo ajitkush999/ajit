@@ -1,0 +1,1579 @@
+
+/* =========================================================
+   AJIT VISUAL SYNC — MIDNIGHT AURORA
+   Shared stylesheet for all website pages.
+
+   EDITING GUIDE:
+   1. Theme colours: :root
+   2. Hero: Section 04
+   3. Navbar: Section 05
+   4. Journey: Section 06
+   5. Certificates: Section 07
+   6. Contact and Resume: Sections 08–09
+   7. Responsive design: Section 14 onwards
+   ========================================================= */
+
+
+/* =========================================================
+   01. GLOBAL THEME VARIABLES
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #080D18;
+  --surface: #101A2B;
+  --surface-2: #142238;
+
+  --cyan: #48E5D9;
+  --violet: #9B8CFF;
+
+  --text: #F4F7FF;
+  --muted: #9AA8BC;
+
+  --line: rgba(154, 168, 188, 0.16);
+  --glass: rgba(13, 24, 41, 0.54);
+
+  --cyan-glow: 0 0 28px rgba(72, 229, 217, 0.16);
+  --violet-glow: 0 0 28px rgba(155, 140, 255, 0.15);
+
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Space Grotesk", Arial, sans-serif;
+
+  --page-width: 1120px;
+  --section-space: 88px;
+  --nav-height: 56px;
+
+  --transition-fast: 0.22s ease;
+  --transition-smooth: 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* Light theme */
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #EEF4FA;
+  --surface: #FFFFFF;
+  --surface-2: #E1ECF4;
+
+  --cyan: #087F83;
+  --violet: #6654C8;
+
+  --text: #101A2B;
+  --muted: #53657A;
+
+  --line: rgba(16, 26, 43, 0.15);
+  --glass: rgba(255, 255, 255, 0.62);
+
+  --cyan-glow: 0 0 28px rgba(8, 127, 131, 0.13);
+  --violet-glow: 0 0 28px rgba(102, 84, 200, 0.12);
+}
+
+
+/* =========================================================
+   02. RESET AND GLOBAL ELEMENTS
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family: var(--font-body);
+  line-height: 1.6;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+body,
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+::selection {
+  color: #07131D;
+  background: var(--cyan);
+}
+
+
+/* Shared page views */
+
+.page-view[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.page-view {
+  width: 100%;
+  min-height: 100vh;
+  animation: pageEnter 0.45s ease both;
+}
+
+.section-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.section-pad {
+  padding: var(--section-space) 22px;
+}
+
+
+/* =========================================================
+   03. COMMON TEXT AND BUTTON STYLES
+   ========================================================= */
+
+.eyebrow {
+  margin-bottom: 12px;
+
+  color: var(--muted);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.eyebrow-dot {
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+
+  border-radius: 50%;
+  background: var(--cyan);
+
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--cyan);
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  transition:
+    gap var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.text-link:hover {
+  gap: 18px;
+  opacity: 0.85;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 12px 20px;
+
+  border: 1px solid transparent;
+  border-radius: 999px;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #07131D;
+  background: var(--cyan);
+  box-shadow: 0 0 22px rgba(72, 229, 217, 0.18);
+}
+
+.button-primary:hover {
+  box-shadow: 0 0 32px rgba(72, 229, 217, 0.32);
+}
+
+
+/* Shared section headings */
+
+.section-heading {
+  width: min(100%, 620px);
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 10px 0;
+
+  font-size: clamp(2rem, 8vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.06em;
+}
+
+.section-heading h2 span {
+  display: inline;
+  color: var(--cyan);
+  text-shadow: 0 0 28px rgba(72, 229, 217, 0.2);
+}
+
+.section-heading > p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+
+/* =========================================================
+   04. HERO — CINEMATIC INTRODUCTION
+   ========================================================= */
+
+.hero {
+  display: grid;
+  place-items: center;
+
+  min-height: 100svh;
+  padding: 80px 24px 100px;
+
+  background:
+    radial-gradient(
+      ellipse at 78% 24%,
+      rgba(72, 229, 217, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 16% 80%,
+      rgba(155, 140, 255, 0.14),
+      transparent 35%
+    ),
+    var(--bg);
+}
+
+.hero-grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+
+  -webkit-mask-image:
+    linear-gradient(to bottom, black, transparent 90%);
+
+  mask-image:
+    linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero-orb {
+  position: absolute;
+  z-index: -1;
+
+  width: 240px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  filter: blur(45px);
+  opacity: 0.28;
+
+  pointer-events: none;
+
+  animation: orbFloat 11s ease-in-out infinite alternate;
+}
+
+.hero-orb--one {
+  top: 10%;
+  right: -90px;
+  background: var(--cyan);
+}
+
+.hero-orb--two {
+  bottom: 8%;
+  left: -110px;
+
+  background: var(--violet);
+  animation-delay: -4s;
+}
+
+.hero-content {
+  width: min(100%, 760px);
+  text-align: center;
+}
+
+.hero-content h1 {
+  margin: 22px 0;
+
+  font-size: clamp(2.5rem, 12vw, 6.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.075em;
+}
+
+.hero-content h1 span {
+  display: block;
+
+  color: var(--cyan);
+  text-shadow: 0 0 28px rgba(72, 229, 217, 0.2);
+}
+
+.hero-copy {
+  max-width: 440px;
+  margin: 0 auto 28px;
+
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transform: translateX(-50%);
+
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+.hero-scroll-hint span {
+  position: relative;
+
+  width: 22px;
+  height: 34px;
+
+  border: 1px solid var(--muted);
+  border-radius: 20px;
+}
+
+.hero-scroll-hint span::after {
+  content: "";
+
+  position: absolute;
+  top: 7px;
+  left: 9px;
+
+  width: 2px;
+  height: 6px;
+
+  border-radius: 2px;
+  background: var(--cyan);
+
+  animation: scrollDot 1.5s infinite;
+}
+
+
+/* =========================================================
+   05. FLOATING NAVBAR
+   ========================================================= */
+
+.floating-nav {
+  position: fixed;
+  z-index: 1000;
+
+  left: 50%;
+  bottom: 20px;
+
+  width: min(82%, 520px);
+  min-height: var(--nav-height);
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  padding: 7px 10px;
+
+  border: 1px solid rgba(72, 229, 217, 0.26);
+  border-radius: 999px;
+
+  background: rgba(10, 19, 33, 0.76);
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 12px 45px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(72, 229, 217, 0.08);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate(-50%, 24px);
+
+  transition:
+    opacity 0.45s ease,
+    transform var(--transition-smooth),
+    visibility 0.45s;
+}
+
+.floating-nav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translate(-50%, 0);
+}
+
+.nav-spacer {
+  min-width: 1px;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(22px, 7vw, 42px);
+
+  white-space: nowrap;
+}
+
+.nav-center a {
+  color: #F4F7FF;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  transition: color var(--transition-fast);
+}
+
+.nav-center a:hover {
+  color: var(--cyan);
+}
+
+.menu-toggle {
+  justify-self: end;
+
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 1.5px;
+
+  border-radius: 3px;
+  background: #F4F7FF;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* Navbar dropdown */
+
+.nav-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+
+  width: min(260px, 78vw);
+  padding: 10px;
+
+  border: 1px solid rgba(72, 229, 217, 0.25);
+  border-radius: 20px;
+
+  background: rgba(12, 23, 39, 0.94);
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+
+  animation: menuEnter 0.22s ease both;
+}
+
+.nav-menu[hidden] {
+  display: none !important;
+}
+
+.nav-menu a,
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 13px 12px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: transparent;
+  color: #F4F7FF;
+
+  font-size: 0.85rem;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: background var(--transition-fast);
+}
+
+.nav-menu a:hover,
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.theme-toggle-track {
+  width: 36px;
+  height: 20px;
+
+  padding: 3px;
+
+  border-radius: 20px;
+  background: #40516A;
+}
+
+.theme-toggle-thumb {
+  display: block;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  background: var(--cyan);
+
+  transition: transform 0.25s ease;
+}
+
+:root[data-theme="light"] .theme-toggle-thumb {
+  transform: translateX(16px);
+}
+
+
+/* =========================================================
+   06. JOURNEY SECTION
+   ========================================================= */
+
+.journey {
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      rgba(72, 229, 217, 0.07),
+      transparent 55%
+    ),
+    var(--bg);
+}
+
+.journey-switch {
+  display: flex;
+
+  width: min(100%, 330px);
+  margin: 0 auto 38px;
+  padding: 5px;
+
+  border: 1px solid var(--line);
+  border-radius: 99px;
+
+  background: var(--surface);
+}
+
+.journey-tab {
+  flex: 1;
+
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 99px;
+
+  background: transparent;
+  color: var(--muted);
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.journey-tab.is-active {
+  background: var(--cyan);
+  color: #07131D;
+
+  box-shadow: 0 0 24px rgba(72, 229, 217, 0.2);
+}
+
+.journey-panel {
+  width: min(100%, 620px);
+  margin: auto;
+}
+
+.journey-panel[hidden] {
+  display: none !important;
+}
+
+.timeline {
+  position: relative;
+
+  display: grid;
+  gap: 25px;
+
+  padding: 6px 0 6px 8px;
+}
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 26px;
+
+  width: 2px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--cyan),
+      var(--violet),
+      transparent
+    );
+
+  transform-origin: top;
+}
+
+.timeline-item {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: start;
+  gap: 18px;
+
+  opacity: 0;
+  transform: translateY(16px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.journey-panel.is-active .timeline-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(72, 229, 217, 0.65);
+  border-radius: 50%;
+
+  background: var(--surface);
+  color: var(--cyan);
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  box-shadow: 0 0 20px rgba(72, 229, 217, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-node {
+  transform: scale(1.1);
+  box-shadow: 0 0 26px rgba(72, 229, 217, 0.25);
+}
+
+.timeline-content {
+  padding-top: 4px;
+}
+
+.timeline-item h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   07. CERTIFICATES SLIDESHOW
+   ========================================================= */
+
+.certificates {
+  background:
+    radial-gradient(
+      ellipse at 50% 55%,
+      rgba(155, 140, 255, 0.09),
+      transparent 58%
+    ),
+    var(--bg);
+}
+
+.certificate-frame {
+  width: min(100%, 650px);
+  margin: auto;
+  padding: 12px;
+
+  border: 1px solid var(--line);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.certificate-image-wrap {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 220px;
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+  background: #17243A;
+}
+
+.certificate-image-wrap > img#certificateImage {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  background: #17243A;
+
+  opacity: 1;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s ease;
+}
+
+.certificate-image-wrap > img#certificateImage.is-changing {
+  opacity: 0;
+  transform: scale(0.985);
+}
+
+
+/* Missing image fallback */
+
+.certificate-fallback {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+
+  padding: 20px;
+
+  color: #17243A;
+  background: #F4F7FF;
+
+  text-align: center;
+}
+
+.certificate-fallback[hidden] {
+  display: none !important;
+}
+
+.fallback-icon {
+  color: #087F83;
+  font-size: 2.5rem;
+}
+
+.certificate-fallback small {
+  color: #53657A;
+}
+
+
+/* Seventh slide */
+
+.hire-slide {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(72, 229, 217, 0.22),
+      transparent 55%
+    ),
+    #101A2B;
+
+  text-align: center;
+}
+
+.hire-slide[hidden] {
+  display: none !important;
+}
+
+.hire-background-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  opacity: 0.34;
+}
+
+.hire-glow {
+  position: absolute;
+
+  width: 180px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: var(--violet);
+  filter: blur(70px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.hire-slide > *:not(.hire-glow) {
+  position: relative;
+}
+
+.hire-slide h3 {
+  max-width: 400px;
+  margin-bottom: 22px;
+
+  color: #F4F7FF;
+
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  line-height: 1.15;
+}
+
+
+/* Slideshow controls */
+
+.certificate-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 3px 0;
+
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.certificate-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.certificate-arrows button {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid var(--line);
+  border-radius: 50%;
+
+  background: var(--surface);
+
+  cursor: pointer;
+
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.certificate-arrows button:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   08. CONTACT SECTION
+   ========================================================= */
+
+.contact {
+  background:
+    linear-gradient(
+      180deg,
+      var(--bg),
+      #0B1525 35%,
+      var(--bg)
+    );
+}
+
+.contact-backdrop {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  opacity: 0.5;
+
+  background:
+    radial-gradient(
+      ellipse at 15% 25%,
+      rgba(72, 229, 217, 0.13),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 90% 65%,
+      rgba(155, 140, 255, 0.16),
+      transparent 42%
+    );
+}
+
+
+/* Contact links */
+
+.contact-actions {
+  display: grid;
+  gap: 12px;
+
+  width: min(100%, 520px);
+  margin: 0 auto 62px;
+}
+
+.glass-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-height: 76px;
+  padding: 14px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 17px;
+
+  background: var(--glass);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.08),
+    0 0 25px rgba(72, 229, 217, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.glass-link:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(72, 229, 217, 0.65);
+
+  box-shadow: var(--cyan-glow);
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+
+  height: 40px;
+
+  border-radius: 13px;
+
+  color: var(--cyan);
+  background: rgba(72, 229, 217, 0.12);
+
+  font-weight: 700;
+}
+
+.glass-link > span:nth-child(2) {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.glass-link strong {
+  font-size: 0.9rem;
+}
+
+.glass-link small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  overflow-wrap: anywhere;
+}
+
+.link-arrow {
+  margin-left: auto;
+  color: var(--cyan);
+}
+
+
+/* =========================================================
+   09. RESUME CHOICE CARDS
+   ========================================================= */
+
+.resume-area {
+  width: min(100%, 650px);
+  margin: auto;
+  text-align: center;
+}
+
+.resume-area h3 {
+  margin: 8px 0;
+
+  font-size: clamp(1.4rem, 6vw, 2.1rem);
+}
+
+.resume-area > p:not(.eyebrow) {
+  margin-bottom: 24px;
+
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.resume-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  text-align: left;
+}
+
+.resume-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  min-height: 180px;
+
+  padding: 18px;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  background: var(--glass);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cyan-glow);
+}
+
+.resume-card--tech {
+  border-color: rgba(72, 229, 217, 0.45);
+}
+
+.resume-card--creator {
+  border-color: rgba(155, 140, 255, 0.45);
+}
+
+.resume-symbol {
+  margin-bottom: 14px;
+
+  color: var(--cyan);
+
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+
+.resume-card--creator .resume-symbol {
+  color: var(--violet);
+}
+
+.resume-card strong {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+}
+
+.resume-card small {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.resume-cta {
+  margin-top: auto;
+  padding-top: 18px;
+
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   10. FOOTER
+   ========================================================= */
+
+.site-footer {
+  padding: 38px 20px 100px;
+
+  border-top: 1px solid var(--line);
+
+  background: var(--bg);
+
+  text-align: center;
+}
+
+.footer-brand {
+  display: inline-block;
+
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.footer-brand span {
+  display: inline;
+  color: var(--cyan);
+}
+
+.site-footer p,
+.site-footer small {
+  margin: 10px 0 0;
+
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+
+/* =========================================================
+   11. PLACEHOLDER PAGE VIEWS
+   Tech, Creator, Contact, Thoughts and Resume pages.
+   ========================================================= */
+
+.placeholder-page {
+  display: grid;
+  place-items: center;
+
+  min-height: 100svh;
+  padding: 100px 24px;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 20%,
+      rgba(72, 229, 217, 0.12),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 20% 80%,
+      rgba(155, 140, 255, 0.12),
+      transparent 42%
+    ),
+    var(--bg);
+
+  text-align: center;
+}
+
+.placeholder-content {
+  width: min(100%, 760px);
+}
+
+.placeholder-content h1 {
+  margin: 20px 0;
+
+  font-size: clamp(2rem, 9vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+}
+
+.placeholder-content h1 span {
+  display: block;
+  color: var(--cyan);
+}
+
+.placeholder-content > p:not(.eyebrow) {
+  margin-bottom: 26px;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   12. SCROLL REVEAL ANIMATIONS
+   JavaScript adds .is-visible when an element enters view.
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   13. KEYFRAME ANIMATIONS
+   ========================================================= */
+
+@keyframes orbFloat {
+  from {
+    transform: translate3d(0, -12px, 0) scale(0.92);
+  }
+
+  to {
+    transform: translate3d(-24px, 22px, 0) scale(1.08);
+  }
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes menuEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   14. TABLET AND DESKTOP RESPONSIVE DESIGN
+   Mobile styles above are the primary design.
+   ========================================================= */
+
+@media (min-width: 700px) {
+
+  :root {
+    --section-space: 120px;
+  }
+
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero-orb {
+    width: 360px;
+    filter: blur(65px);
+  }
+
+  .timeline {
+    gap: 30px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 46px 1fr;
+    gap: 22px;
+  }
+
+  .timeline-node {
+    width: 46px;
+    height: 46px;
+  }
+
+  .timeline::before {
+    left: 30px;
+  }
+
+  .resume-choices {
+    gap: 18px;
+  }
+
+  .resume-card {
+    min-height: 205px;
+    padding: 24px;
+  }
+}
+
+
+@media (min-width: 1000px) {
+
+  .section-pad {
+    padding-right: max(40px, calc((100% - var(--page-width)) / 2));
+    padding-left: max(40px, calc((100% - var(--page-width)) / 2));
+  }
+
+  .hero-content {
+    max-width: 900px;
+  }
+
+  .hero-orb--one {
+    right: 8%;
+  }
+
+  .hero-orb--two {
+    left: 7%;
+  }
+
+  .contact-actions {
+    width: min(100%, 600px);
+  }
+}
+
+
+/* =========================================================
+   15. SMALL MOBILE SCREEN ADJUSTMENTS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .section-pad {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .floating-nav {
+    width: 88%;
+    min-height: 52px;
+    bottom: 14px;
+  }
+
+  .nav-center {
+    gap: 18px;
+  }
+
+  .nav-center a {
+    font-size: 0.82rem;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .resume-card {
+    min-height: 168px;
+    padding: 14px;
+  }
+
+  .glass-link {
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY: REDUCED MOTION
+   Respect visitors who prefer less animation.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+
+
+
+
+/* Clickable Hire Me heading */
+.hire-title-link h3 {
+    color: var(--text) !important;
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.2;
+    max-width: 500px;
+    margin: 12px auto;
+    text-align: center;
+    overflow-wrap: break-word;
+    transition: opacity 0.3s ease;
+}
+
+.hire-title-link h3 {
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.hire-title-link:hover h3 {
+    opacity: 0.75;
+}
+
+
+
+
+
+/* Fix Hire Slide text visibility in Light Mode */
+:root[data-theme="light"] .hire-slide .hire-title-link,
+:root[data-theme="light"] .hire-slide .hire-title-link h3 {
+    color: #FFFFFF !important;
+}
+
+:root[data-theme="light"] .hire-slide .eyebrow {
+    color: #48E5D9 !important;
+}
