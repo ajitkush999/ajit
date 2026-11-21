@@ -1577,3 +1577,23 @@ a:focus-visible {
 :root[data-theme="light"] .hire-slide .eyebrow {
     color: #48E5D9 !important;
 }
+
+
+/* Resume PDF Preview */
+.resume-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.resume-preview {
+    display: block;
+    width: 100%;
+    min-height: 750px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: white;
+    margin-top: 20px;
+}

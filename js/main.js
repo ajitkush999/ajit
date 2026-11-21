@@ -35,7 +35,7 @@
       phoneDisplay: "8376068040",
       whatsappNumber: "918376068040",
       email: "ajitkush999@gmail.com",
-      linkedinUrl: ""
+      linkedinUrl: "https://www.linkedin.com/in/ajit-kushwaha-b9888b262/"
     },
 
     assets: {
