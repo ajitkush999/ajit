@@ -1,0 +1,478 @@
+
+/* =========================================================
+   AJIT VISUAL SYNC — TECH PAGE
+   CINEMATIC INTRODUCTION
+   ========================================================= */
+
+
+/* =========================================================
+   01. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --page-bg: #000000;
+
+    --frame-ratio: 16 / 9;
+
+    --frame-max-width: 1920px;
+
+    --frame-width: min(100%, 1920px);
+
+    --frame-radius: 0px;
+
+    --white: #ffffff;
+
+    --black: #000000;
+
+    --transition-fast: 250ms ease;
+
+    --transition-smooth: 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   02. GLOBAL RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    width: 100%;
+    min-height: 100%;
+
+    background: var(--page-bg);
+
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+}
+
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background: var(--page-bg);
+
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   03. MAIN EXPERIENCE
+   ========================================================= */
+
+#experience {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--black);
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   04. SHARED 16:9 VIDEO FRAME
+   ========================================================= */
+
+.intro-scene,
+.hello-screen {
+
+    position: relative;
+
+    width: var(--frame-width);
+
+    max-width: var(--frame-max-width);
+
+    aspect-ratio: var(--frame-ratio);
+
+    height: auto;
+
+    flex: 0 0 auto;
+
+    background: var(--black);
+
+    overflow: hidden;
+
+    border-radius: var(--frame-radius);
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   05. DIV 01 — INTRO SCENE
+   ========================================================= */
+
+.intro-scene {
+
+    display: block;
+
+    z-index: 1;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    background: #000000;
+
+    contain: layout paint;
+}
+
+
+/* =========================================================
+   06. THREE.JS CANVAS
+   ========================================================= */
+
+#cosmosCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+
+    outline: none;
+
+    border: none;
+
+    background: #000000;
+
+    touch-action: pan-y;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   07. CINEMATIC VIGNETTE
+   ========================================================= */
+
+.cinematic-vignette {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            transparent 42%,
+            rgba(0, 0, 0, 0.10) 65%,
+            rgba(0, 0, 0, 0.48) 100%
+        );
+
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   08. FILM GRAIN OVERLAY
+   ========================================================= */
+
+.cinematic-grain {
+
+    position: absolute;
+
+    inset: -50%;
+
+    width: 200%;
+    height: 200%;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    opacity: 0.045;
+
+    background-image: url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E
+    );
+
+    animation: filmGrain 0.22s steps(2) infinite;
+}
+
+
+/* =========================================================
+   09. FILM GRAIN ANIMATION
+   ========================================================= */
+
+@keyframes filmGrain {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-2%, 1%);
+    }
+
+    40% {
+        transform: translate(1%, -2%);
+    }
+
+    60% {
+        transform: translate(2%, 1%);
+    }
+
+    80% {
+        transform: translate(-1%, 2%);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+
+}
+
+
+/* =========================================================
+   10. CINEMATIC FLASH
+   ========================================================= */
+
+.cinematic-flash {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    background: #ffffff;
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+
+/* =========================================================
+   11. DIV 02 — HELLO SCREEN PLACEHOLDER
+   ========================================================= */
+
+.hello-screen {
+
+    display: none;
+
+    z-index: 5;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   12. HIDDEN STATE
+   ========================================================= */
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   13. DESKTOP — LARGE DISPLAYS
+   ========================================================= */
+
+@media (min-width: 1921px) {
+
+    .intro-scene,
+    .hello-screen {
+
+        width: min(100%, 1920px);
+
+    }
+
+}
+
+
+/* =========================================================
+   14. TABLET — LANDSCAPE
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .intro-scene,
+    .hello-screen {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =========================================================
+   15. MOBILE — PORTRAIT
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    #experience {
+
+        width: 100%;
+
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        padding: 0;
+
+    }
+
+    .intro-scene,
+    .hello-screen {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        aspect-ratio: 16 / 9;
+
+        border-radius: 0;
+
+    }
+
+    .cinematic-vignette {
+
+        opacity: 0.65;
+
+    }
+
+    .cinematic-grain {
+
+        opacity: 0.025;
+
+    }
+
+}
+
+
+/* =========================================================
+   16. SMALL MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .intro-scene,
+    .hello-screen {
+
+        width: 100%;
+
+        aspect-ratio: 16 / 9;
+
+    }
+
+}
+
+
+/* =========================================================
+   17. REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    .cinematic-grain {
+
+        animation: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   18. SELECTION AND INTERACTION CLEANUP
+   ========================================================= */
+
+::selection {
+
+    background: transparent;
+
+    color: inherit;
+
+}
+
+
+canvas {
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+/* =========================================================
+   19. GPU / RENDERING CLEANUP
+   ========================================================= */
+
+.intro-scene,
+.hello-screen {
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+}
+
+
+/* =========================================================
+   END OF TECH PAGE CSS
+   ========================================================= */

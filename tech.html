@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <meta
+        name="description"
+        content="Ajit Visual Sync — A cinematic journey from the universe to the digital world."
+    >
+
+    <title>Tech | Ajit Visual Sync</title>
+
+    <!-- Performance: establish CDN connection early -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Three.js module configuration -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+        }
+    }
+    </script>
+
+    <!-- Tech Page stylesheet only -->
+    <link rel="stylesheet" href="css/tech.css">
+
+</head>
+
+<body>
+
+    <!-- =========================================
+         MAIN EXPERIENCE WRAPPER
+         ========================================= -->
+
+    <main id="experience">
+
+        <!-- =====================================
+             DIV 01 — CINEMATIC INTRODUCTION
+             Aspect ratio: 16:9
+             Reference resolution: 1920 × 1080
+             ===================================== -->
+
+        <section
+            id="introScene"
+            class="intro-scene"
+            aria-label="Cinematic journey through the universe"
+        >
+
+            <!-- 3D Rendering Canvas -->
+            <canvas
+                id="cosmosCanvas"
+                aria-hidden="true"
+            ></canvas>
+
+
+            <!-- Cinematic edge lighting -->
+            <div
+                class="cinematic-vignette"
+                aria-hidden="true"
+            ></div>
+
+
+            <!-- Film grain overlay -->
+            <div
+                class="cinematic-grain"
+                aria-hidden="true"
+            ></div>
+
+
+            <!-- Transition flash layer -->
+            <div
+                id="cinematicFlash"
+                class="cinematic-flash"
+                aria-hidden="true"
+            ></div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             DIV 02 — FUTURE CONTENT
+             Hidden until DIV 01 is completed.
+             Design will be implemented separately.
+             ===================================== -->
+
+        <section
+            id="helloScreen"
+            class="hello-screen"
+            aria-label="Introduction complete"
+            hidden
+        >
+
+            <!-- DIV 02 content will be added later -->
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         THREE.JS + CINEMATIC EXPERIENCE
+         ========================================= -->
+
+    <script
+        type="module"
+        src="js/tech.js"
+    ></script>
+
+</body>
+
+</html>
